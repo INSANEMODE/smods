@@ -221,7 +221,7 @@ File.__index = File
 -----------------------------------------------------------------------------
 
 local nativefs = {}
-local loveC = ffi.os == 'Windows' and ffi.load('love') or C
+local loveC = (ffi.os == 'Windows' and ffi.load('love')) or (love.system.getOS() == 'Android' and ffi.load('liblove.so')) or C
 
 function nativefs.newFile(name)
     if type(name) ~= 'string' then
